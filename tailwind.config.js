@@ -8,20 +8,18 @@ export default {
   theme: {
     extend: {
       colors: {
-        cyber: {
-          950: '#050811',
-          900: '#0a0f1d',
-          850: '#0f172a',
-          800: '#151e36',
-          700: '#1e294b',
-          blue: '#0ea5e9',
-          cyan: '#06b6d4',
-          neon: '#22d3ee',
-          purple: '#8b5cf6',
-          violet: '#a855f7',
-          emerald: '#10b981',
-          danger: '#ef4444',
-          warning: '#f59e0b'
+        brand: {
+          50: '#eff6ff',
+          100: '#dbeafe',
+          200: '#bfdbfe',
+          300: '#93c5fd',
+          400: '#60a5fa',
+          500: '#3b82f6',
+          600: '#2563eb',
+          700: '#1d4ed8',
+          800: '#1e40af',
+          900: '#1e3a8a',
+          950: '#172554'
         }
       },
       fontFamily: {
@@ -37,11 +35,11 @@ export default {
       keyframes: {
         float: {
           '0%, 100%': { transform: 'translateY(0px)' },
-          '50%': { transform: 'translateY(-10px)' },
+          '50%': { transform: 'translateY(-6px)' },
         },
         glow: {
-          '0%': { boxShadow: '0 0 15px rgba(6, 182, 212, 0.2)' },
-          '100%': { boxShadow: '0 0 35px rgba(139, 92, 246, 0.4)' },
+          '0%': { boxShadow: '0 0 15px rgba(37, 99, 235, 0.15)' },
+          '100%': { boxShadow: '0 0 30px rgba(99, 102, 241, 0.25)' },
         },
         shimmer: {
           '100%': { transform: 'translateX(100%)' }

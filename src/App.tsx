@@ -9,6 +9,7 @@ import { ProtectedRoute } from './components/layout/ProtectedRoute';
 
 // Pages
 import { Home } from './pages/Home';
+import { Learn } from './pages/Learn';
 import { SpotTheScam } from './pages/SpotTheScam';
 import { CyberQuiz } from './pages/CyberQuiz';
 import { PasswordSafety } from './pages/PasswordSafety';
@@ -51,7 +52,7 @@ export function App() {
             <main className="flex-grow pb-16 md:pb-0">
               <Routes>
                 <Route path="/" element={<Home />} />
-                <Route path="/learn" element={<Navigate to="/spot-the-scam" replace />} />
+                <Route path="/learn" element={<Learn />} />
                 <Route path="/spot-the-scam" element={<SpotTheScam />} />
                 <Route path="/quiz" element={<CyberQuiz />} />
                 <Route path="/password-safety" element={<PasswordSafety />} />
