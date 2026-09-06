@@ -22,6 +22,16 @@ export const PhoneSimulator: React.FC<PhoneSimulatorProps> = ({
 }) => {
   const [selectedAnswer, setSelectedAnswer] = useState<'safe' | 'scam' | null>(null);
   const [hasSubmitted, setHasSubmitted] = useState(false);
+  const chatViewportRef = React.useRef<HTMLDivElement>(null);
+
+  // Reset state and scroll to top whenever scenario changes
+  React.useEffect(() => {
+    setSelectedAnswer(null);
+    setHasSubmitted(false);
+    if (chatViewportRef.current) {
+      chatViewportRef.current.scrollTop = 0;
+    }
+  }, [scenario.id]);
 
   const handleChoice = (choice: 'safe' | 'scam') => {
     if (hasSubmitted) return;
@@ -35,6 +45,9 @@ export const PhoneSimulator: React.FC<PhoneSimulatorProps> = ({
   const handleNext = () => {
     setSelectedAnswer(null);
     setHasSubmitted(false);
+    if (chatViewportRef.current) {
+      chatViewportRef.current.scrollTop = 0;
+    }
     if (onNext) onNext();
   };
 
@@ -80,7 +93,7 @@ export const PhoneSimulator: React.FC<PhoneSimulatorProps> = ({
           </div>
 
           {/* Chat / Message Viewport */}
-          <div className="flex-1 p-4 overflow-y-auto bg-slate-50/50 flex flex-col justify-center">
+          <div ref={chatViewportRef} className="flex-1 p-4 overflow-y-auto bg-slate-50/50 flex flex-col justify-center max-h-[360px]">
             <MessageBubble scenario={scenario} />
           </div>
 

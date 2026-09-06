@@ -32,8 +32,8 @@ interface ProgressContextType {
   saveQuizResult: (score: number, total: number) => Promise<void>;
   recordScamAttempt: (scenarioId: string, isCorrect: boolean) => Promise<void>;
   saveSocialAudit: (score: number, checklist: Record<string, boolean>) => Promise<void>;
-  savePreSurvey: (answers: Record<string, any>) => Promise<void>;
-  savePostSurvey: (answers: Record<string, any>) => Promise<void>;
+  savePreSurvey: (answers: Record<string, any>, studentInfo?: { name?: string; rollNo?: string }) => Promise<void>;
+  savePostSurvey: (answers: Record<string, any>, studentInfo?: { name?: string; rollNo?: string }) => Promise<void>;
   recordScenarioComplete: (scenarioId: string) => void;
   getUserRank: () => { rank: string; color: string; level: number; nextLevelRequirement: string };
   getBadges: () => Array<{ id: string; name: string; desc: string; icon: string; earned: boolean }>;
@@ -59,13 +59,27 @@ export const ProgressProvider: React.FC<{ children: React.ReactNode }> = ({ chil
   const { currentUser } = useAuth();
   const [progress, setProgress] = useState<ProgressState>(defaultProgress);
 
-  // Storage key is user-specific or guest
-  const getStorageKey = (uid: string | undefined) => `cybersafe_progress_${uid || 'guest'}`;
+  // Generate or retrieve a unique anonymous session token for guest students
+  const getStudentSessionId = () => {
+    let sid = sessionStorage.getItem('cybersafe_student_session_id');
+    if (!sid) {
+      sid = 'student_' + Math.random().toString(36).substring(2, 9) + '_' + Date.now().toString(36);
+      sessionStorage.setItem('cybersafe_student_session_id', sid);
+    }
+    return sid;
+  };
+
+  // Storage key: User-specific in localStorage, or session-specific for guest
+  const getStorageKey = (uid: string | undefined) => {
+    if (uid) return `cybersafe_progress_${uid}`;
+    return `cybersafe_progress_session_${getStudentSessionId()}`;
+  };
 
   // Load progress when user changes
   useEffect(() => {
     const key = getStorageKey(currentUser?.uid);
-    const cached = localStorage.getItem(key);
+    const storage = currentUser?.uid ? localStorage : sessionStorage;
+    const cached = storage.getItem(key);
     
     if (cached) {
       try {
@@ -104,9 +118,10 @@ export const ProgressProvider: React.FC<{ children: React.ReactNode }> = ({ chil
     setProgress((prev) => {
       const next = updater(prev);
       const key = getStorageKey(currentUser?.uid);
-      localStorage.setItem(key, JSON.stringify(next));
+      const storage = currentUser?.uid ? localStorage : sessionStorage;
+      storage.setItem(key, JSON.stringify(next));
 
-      // Push to Firestore asynchronously if real user
+      // Push to Firestore asynchronously if user is logged in
       if (isFirebaseConfigured && db && currentUser) {
         const userDocRef = doc(db, 'userProgress', currentUser.uid);
         setDoc(userDocRef, {
@@ -155,11 +170,12 @@ export const ProgressProvider: React.FC<{ children: React.ReactNode }> = ({ chil
     }));
 
     // Record individual quiz result in Firestore collection for analytics
-    if (isFirebaseConfigured && db && currentUser) {
+    if (isFirebaseConfigured && db) {
       try {
         await addDoc(collection(db, 'quizResults'), {
-          userId: currentUser.uid,
-          userName: currentUser.displayName,
+          userId: currentUser?.uid || getStudentSessionId(),
+          userName: currentUser?.displayName || 'Student (Guest)',
+          userEmail: currentUser?.email || '',
           score,
           total,
           percentage,
@@ -184,6 +200,21 @@ export const ProgressProvider: React.FC<{ children: React.ReactNode }> = ({ chil
         }
       };
     });
+
+    // Record individual scenario answer in Firestore
+    if (isFirebaseConfigured && db) {
+      try {
+        await addDoc(collection(db, 'scam_attempts'), {
+          studentId: currentUser?.uid || getStudentSessionId(),
+          studentName: currentUser?.displayName || currentUser?.email || 'Student (Guest)',
+          scenarioId,
+          isCorrect,
+          createdAt: serverTimestamp()
+        });
+      } catch (e) {
+        console.warn('Could not record scam attempt in Firestore:', e);
+      }
+    }
   };
 
   const saveSocialAudit = async (score: number, checklist: Record<string, boolean>) => {
@@ -194,19 +225,23 @@ export const ProgressProvider: React.FC<{ children: React.ReactNode }> = ({ chil
     }));
   };
 
-  const savePreSurvey = async (answers: Record<string, any>) => {
+  const savePreSurvey = async (answers: Record<string, any>, studentInfo?: { name?: string; rollNo?: string }) => {
     updateAndPersist((prev) => ({
       ...prev,
       preSurveyCompleted: true,
       preSurveyData: answers
     }));
 
-    if (isFirebaseConfigured && db && currentUser) {
+    if (isFirebaseConfigured && db) {
       try {
         await addDoc(collection(db, 'surveyResponses'), {
-          userId: currentUser.uid,
+          userId: currentUser?.uid || getStudentSessionId(),
+          studentName: studentInfo?.name || currentUser?.displayName || currentUser?.email || 'Anonymous Student',
+          rollNo: studentInfo?.rollNo || '',
+          userEmail: currentUser?.email || '',
           surveyType: 'pre',
           responses: answers,
+          submittedAt: new Date().toISOString(),
           createdAt: serverTimestamp()
         });
       } catch (e) {
@@ -215,19 +250,23 @@ export const ProgressProvider: React.FC<{ children: React.ReactNode }> = ({ chil
     }
   };
 
-  const savePostSurvey = async (answers: Record<string, any>) => {
+  const savePostSurvey = async (answers: Record<string, any>, studentInfo?: { name?: string; rollNo?: string }) => {
     updateAndPersist((prev) => ({
       ...prev,
       postSurveyCompleted: true,
       postSurveyData: answers
     }));
 
-    if (isFirebaseConfigured && db && currentUser) {
+    if (isFirebaseConfigured && db) {
       try {
         await addDoc(collection(db, 'surveyResponses'), {
-          userId: currentUser.uid,
+          userId: currentUser?.uid || getStudentSessionId(),
+          studentName: studentInfo?.name || currentUser?.displayName || currentUser?.email || 'Anonymous Student',
+          rollNo: studentInfo?.rollNo || '',
+          userEmail: currentUser?.email || '',
           surveyType: 'post',
           responses: answers,
+          submittedAt: new Date().toISOString(),
           createdAt: serverTimestamp()
         });
       } catch (e) {

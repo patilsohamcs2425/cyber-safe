@@ -8,8 +8,10 @@ import { useAuth } from '../context/AuthContext';
 export const PreSurvey: React.FC = () => {
   const navigate = useNavigate();
   const { currentUser } = useAuth();
-  const { progress, savePreSurvey } = useProgress();
-  const [answers, setAnswers] = useState<Record<string, any>>(progress.preSurveyData || {});
+  const { savePreSurvey } = useProgress();
+  const [studentName, setStudentName] = useState(currentUser?.displayName || '');
+  const [studentRollNo, setStudentRollNo] = useState('');
+  const [answers, setAnswers] = useState<Record<string, any>>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [errorMsg, setErrorMsg] = useState<string | null>(null);
 
@@ -30,7 +32,10 @@ export const PreSurvey: React.FC = () => {
 
     setIsSubmitting(true);
     try {
-      await savePreSurvey(answers);
+      await savePreSurvey(answers, {
+        name: studentName.trim() || currentUser?.displayName || 'Anonymous Student',
+        rollNo: studentRollNo.trim()
+      });
       navigate('/spot-the-scam');
     } catch (err) {
       setErrorMsg('Failed to save survey. Please try again.');
@@ -57,6 +62,39 @@ export const PreSurvey: React.FC = () => {
       </div>
 
       <form onSubmit={handleSubmit} className="bg-white rounded-3xl border border-slate-200/90 p-6 sm:p-8 space-y-8 shadow-[0_4px_20px_-4px_rgba(15,23,42,0.06)]">
+        
+        {/* Student Identification Section */}
+        <div className="p-4 sm:p-5 rounded-2xl bg-blue-50/60 border border-blue-200/80 space-y-3">
+          <p className="text-xs font-bold text-blue-900 uppercase tracking-wider">
+            👤 Student Information (For CEP Study Record)
+          </p>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            <div>
+              <label className="block text-[11px] font-semibold text-slate-700 mb-1">
+                Full Name / Student Name
+              </label>
+              <input
+                type="text"
+                placeholder="e.g. Rahul Sharma"
+                value={studentName}
+                onChange={(e) => setStudentName(e.target.value)}
+                className="w-full px-3.5 py-2 rounded-xl bg-white border border-slate-200 text-xs sm:text-sm text-slate-900 focus:outline-none focus:border-blue-500"
+              />
+            </div>
+            <div>
+              <label className="block text-[11px] font-semibold text-slate-700 mb-1">
+                Roll Number / College ID (Optional)
+              </label>
+              <input
+                type="text"
+                placeholder="e.g. CS-2024-042"
+                value={studentRollNo}
+                onChange={(e) => setStudentRollNo(e.target.value)}
+                className="w-full px-3.5 py-2 rounded-xl bg-white border border-slate-200 text-xs sm:text-sm text-slate-900 focus:outline-none focus:border-blue-500"
+              />
+            </div>
+          </div>
+        </div>
         
         {PRE_SURVEY_QUESTIONS.map((q, idx) => (
           <div key={q.id} className="space-y-3 pb-6 border-b border-slate-100 last:border-0 last:pb-0">

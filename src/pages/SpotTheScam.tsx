@@ -13,16 +13,19 @@ import { useProgress } from '../context/ProgressContext';
 import { Link } from 'react-router-dom';
 
 export const SpotTheScam: React.FC = () => {
-  const { progress, recordScamAttempt } = useProgress();
+  const { recordScamAttempt } = useProgress();
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [sessionAttempted, setSessionAttempted] = useState(0);
   const [sessionCorrect, setSessionCorrect] = useState(0);
   const [streak, setStreak] = useState(0);
   const [maxStreak, setMaxStreak] = useState(0);
   const [hasFinishedAll, setHasFinishedAll] = useState(false);
+  const simulatorRef = React.useRef<HTMLDivElement>(null);
 
   const currentScenario = SCAM_SCENARIOS[currentIndex];
 
   const handleAnswer = async (isCorrect: boolean) => {
+    setSessionAttempted(prev => prev + 1);
     if (isCorrect) {
       setSessionCorrect(prev => prev + 1);
       const newStreak = streak + 1;
@@ -38,6 +41,12 @@ export const SpotTheScam: React.FC = () => {
   const handleNext = () => {
     if (currentIndex + 1 < SCAM_SCENARIOS.length) {
       setCurrentIndex(prev => prev + 1);
+      // Smoothly scroll up to the top of the simulator
+      setTimeout(() => {
+        if (simulatorRef.current) {
+          simulatorRef.current.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+      }, 50);
     } else {
       setHasFinishedAll(true);
       confetti({
@@ -50,13 +59,20 @@ export const SpotTheScam: React.FC = () => {
 
   const handleRestart = () => {
     setCurrentIndex(0);
+    setSessionAttempted(0);
     setSessionCorrect(0);
     setStreak(0);
+    setMaxStreak(0);
     setHasFinishedAll(false);
+    setTimeout(() => {
+      if (simulatorRef.current) {
+        simulatorRef.current.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }
+    }, 50);
   };
 
-  const accuracy = progress.scamsAttempted > 0 
-    ? Math.round((progress.scamsCorrect / progress.scamsAttempted) * 100) 
+  const sessionAccuracy = sessionAttempted > 0 
+    ? Math.round((sessionCorrect / sessionAttempted) * 100) 
     : 0;
 
   return (
@@ -76,7 +92,7 @@ export const SpotTheScam: React.FC = () => {
         </p>
       </div>
 
-      {/* Live HUD Stats Bar */}
+      {/* Live HUD Stats Bar (Session-Based: starts clean upon refresh) */}
       <div className="max-w-md mx-auto grid grid-cols-3 gap-3">
         <div className="p-3.5 rounded-2xl bg-white border border-slate-200 shadow-sm text-center">
           <span className="text-[10px] font-bold uppercase tracking-wider text-slate-400">Current Streak</span>
@@ -88,25 +104,25 @@ export const SpotTheScam: React.FC = () => {
         </div>
 
         <div className="p-3.5 rounded-2xl bg-white border border-slate-200 shadow-sm text-center">
-          <span className="text-[10px] font-bold uppercase tracking-wider text-slate-400">Solved</span>
+          <span className="text-[10px] font-bold uppercase tracking-wider text-slate-400">Progress</span>
           <div className="text-lg font-black text-slate-900 my-0.5">
-            {progress.scamsAttempted}
+            {currentIndex + 1} / {SCAM_SCENARIOS.length}
           </div>
-          <span className="text-[10px] text-slate-500">{progress.scamsCorrect} correct</span>
+          <span className="text-[10px] text-slate-500">{sessionCorrect} correct</span>
         </div>
 
         <div className="p-3.5 rounded-2xl bg-white border border-slate-200 shadow-sm text-center">
           <span className="text-[10px] font-bold uppercase tracking-wider text-slate-400">Accuracy</span>
           <div className="text-lg font-black text-emerald-600 my-0.5">
-            {accuracy}%
+            {sessionAccuracy}%
           </div>
-          <span className="text-[10px] text-slate-500">Overall</span>
+          <span className="text-[10px] text-slate-500">{sessionAttempted} answered</span>
         </div>
       </div>
 
       {/* Main Simulator Area */}
       {!hasFinishedAll ? (
-        <div className="flex justify-center pt-2">
+        <div ref={simulatorRef} className="flex justify-center pt-2 scroll-mt-24">
           <PhoneSimulator
             key={currentScenario.id}
             scenario={currentScenario}
