@@ -68,6 +68,8 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
         return 'Too many attempts. Please wait a few minutes before trying again.';
       case 'auth/operation-not-allowed':
         return 'This sign-in provider is not enabled in Firebase Console. Please enable it under Authentication -> Sign-in method.';
+      case 'auth/unauthorized-domain':
+        return 'This domain is not authorized for Google Sign-In. Add this domain to Firebase Console -> Authentication -> Settings -> Authorized Domains.';
       default:
         return error?.message || 'An unexpected error occurred. Please try again.';
     }
