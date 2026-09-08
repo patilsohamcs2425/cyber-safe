@@ -1,0 +1,32 @@
+/* ==========================================================================
+   CyberSafe GSAP Layer Styles & Performance Optimizations
+   ========================================================================== */
+
+/* GPU acceleration hints for animated containers without breaking layout */
+.gsap-accelerated {
+  will-change: transform, opacity;
+  backface-visibility: hidden;
+  -webkit-font-smoothing: subpixel-antialiased;
+}
+
+/* Prevent horizontal scrollbars during entrance animations */
+body {
+  overflow-x: hidden !important;
+}
+
+/* Ensure smooth pointer handling during button transitions */
+button, 
+a[role="button"], 
+.gsap-clickable {
+  transform-origin: center center;
+}
+
+/* Respect user's reduced-motion preference */
+@media (prefers-reduced-motion: reduce) {
+  *, ::before, ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

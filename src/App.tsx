@@ -7,6 +7,7 @@ import { MobileNav } from './components/layout/MobileNav';
 import { Footer } from './components/layout/Footer';
 import { EmergencyCallButton } from './components/layout/EmergencyCallButton';
 import { ProtectedRoute } from './components/layout/ProtectedRoute';
+import { GSAPProvider } from './animations/GSAPProvider';
 
 // Pages
 import { Home } from './pages/Home';
@@ -40,6 +41,7 @@ export function App() {
       <AuthProvider>
         <ProgressProvider>
           <ScrollToTop />
+          <GSAPProvider />
           <div className="flex flex-col min-h-screen bg-[#f8fafc] text-slate-900 relative selection:bg-blue-100 selection:text-blue-900 overflow-x-hidden">
             
             {/* Subtle light ambient glow */}
