@@ -1,6 +1,6 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import { Home, BookOpen, AlertTriangle, HelpCircle, User, ShieldCheck } from 'lucide-react';
+import { Home, AlertTriangle, HelpCircle, User, ShieldCheck } from 'lucide-react';
 import { useAuth } from '../../context/AuthContext';
 
 export const MobileNav: React.FC = () => {
@@ -8,7 +8,6 @@ export const MobileNav: React.FC = () => {
 
   const tabs = [
     { name: 'Home', path: '/', icon: Home },
-    { name: 'Learn', path: '/learn', icon: BookOpen },
     { name: 'Spot Scam', path: '/spot-the-scam', icon: AlertTriangle, highlight: true },
     { name: 'Quiz', path: '/quiz', icon: HelpCircle },
     { name: currentUser ? 'Dashboard' : 'Sign In', path: currentUser ? '/dashboard' : '/login', icon: currentUser ? ShieldCheck : User },

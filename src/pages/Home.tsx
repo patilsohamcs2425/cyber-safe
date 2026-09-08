@@ -5,21 +5,14 @@ import {
   ArrowRight, 
   CheckCircle, 
   HelpCircle, 
-  Lock, 
   Sparkles,
-  ChevronRight, 
-  PhoneCall, 
-  CheckCheck,
-  BookOpen,
-  Shield,
-  Smartphone,
-  Eye
+  ChevronRight
 } from 'lucide-react';
 import { HeroIllustration, PhishingIllustration } from '../assets/illustrations/CyberIllustrations';
 import { SkiperCard } from '../components/ui/SkiperCard';
-import { StatCounter } from '../components/ui/StatCounter';
 import { SkiperMarquee } from '../components/ui/SkiperMarquee';
 import { PhoneSimulator } from '../components/scam/PhoneSimulator';
+import { LiveFraudTracker } from '../components/home/LiveFraudTracker';
 import { SCAM_SCENARIOS } from '../data/scamScenarios';
 import { SCENARIO_DILEMMAS } from '../data/scenarioDilemmas';
 
@@ -118,51 +111,6 @@ export const Home: React.FC = () => {
       {/* SECTION 2 — SKIPER LIVE ALERT MARQUEE */}
       <section className="w-full">
         <SkiperMarquee />
-      </section>
-
-      {/* SECTION 3 — STATEMENT / REALITY CHECK */}
-      <section className="px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
-        <div className="rounded-3xl p-8 sm:p-12 bg-white border border-slate-200/90 shadow-2xs space-y-8">
-          
-          <div className="max-w-2xl space-y-3">
-            <span className="text-xs font-bold text-blue-600">
-              The Reality of Online Traps
-            </span>
-            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black text-slate-900 leading-tight">
-              "One suspicious message is all it takes."
-            </h2>
-            <p className="text-sm sm:text-base text-slate-600 leading-relaxed">
-              Every day, fraudsters mass-send deceptive texts and Instagram DMs engineered to exploit curiosity, urgency, or fear. You do not need to be a software engineer to protect yourself — you just need to know the red flags.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-5 pt-2">
-            <StatCounter
-              target={1930}
-              label="National Cyber Helpline"
-              description="Dial 1930 immediately in India to freeze money transfers within the Golden Hour."
-              accentColor="text-red-600"
-              icon={<PhoneCall className="w-4 h-4 text-red-500" />}
-            />
-            <StatCounter
-              target={100}
-              suffix="%"
-              label="The UPI Golden Rule"
-              description="A UPI PIN is only used to SEND money. Receiving is completely PIN-free."
-              accentColor="text-emerald-600"
-              icon={<CheckCheck className="w-4 h-4 text-emerald-500" />}
-            />
-            <StatCounter
-              target={16}
-              suffix="+ chars"
-              label="Passphrase Length"
-              description="Multi-word passphrases take supercomputers billions of years to crack."
-              accentColor="text-blue-600"
-              icon={<Lock className="w-4 h-4 text-blue-500" />}
-            />
-          </div>
-
-        </div>
       </section>
 
       {/* SECTION 4 — ASYMMETRICAL EDITORIAL COMMON THREATS */}
@@ -336,59 +284,8 @@ export const Home: React.FC = () => {
         </div>
       </section>
 
-      {/* SECTION 6 — CURRICULUM TOPICS PREVIEW */}
-      <section className="px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto space-y-6">
-        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
-          <div className="space-y-1">
-            <span className="text-xs font-bold text-blue-600">
-              Curriculum Topics
-            </span>
-            <h2 className="text-2xl sm:text-3xl font-black text-slate-900">
-              9 Essential Cyber Defense Skills
-            </h2>
-            <p className="text-xs sm:text-sm text-slate-600">
-              Learn practical rules for password hygiene, 2FA, fake internships, and network safety.
-            </p>
-          </div>
-          <Link
-            to="/learn"
-            className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl bg-blue-50 hover:bg-blue-100 text-blue-700 border border-blue-200 text-xs font-bold transition-colors shrink-0"
-          >
-            <span>Explore All 9 Modules</span>
-            <ArrowRight className="w-3.5 h-3.5" />
-          </Link>
-        </div>
-
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-          {[
-            { title: 'Phishing & Lookalikes', cat: 'Scam Detection', icon: '🎣', desc: 'Identify fake SMS, spoofed domains, and credential harvesting forms.' },
-            { title: 'UPI & Payment Scams', cat: 'Payments', icon: '💳', desc: 'The Golden Rule of UPI PINs and remote screen-sharing software traps.' },
-            { title: 'Password Security & 2FA', cat: 'Credentials', icon: '🔑', desc: 'How long passphrases and authenticator apps defeat brute-force bots.' },
-            { title: 'Social Media & Footprint', cat: 'Social', icon: '📸', desc: 'Why live geotagging and unblurred exam admit cards endanger privacy.' },
-            { title: 'Fake Internships & Tasks', cat: 'Scam Detection', icon: '💼', desc: 'Why genuine companies never charge applicants upfront onboarding fees.' },
-            { title: 'Public Wi-Fi Hygiene', cat: 'Network', icon: '📶', desc: 'Man-in-the-middle hazards on open cafe networks and why 5G is safer.' },
-          ].map((topic, idx) => (
-            <Link to="/learn" key={idx} className="block group">
-              <div className="p-5 rounded-2xl bg-white border border-slate-200/90 hover:border-slate-300 hover:shadow-[0_10px_25px_-5px_rgba(15,23,42,0.06)] transition-all space-y-3">
-                <div className="flex items-center justify-between">
-                  <span className="text-2xl">{topic.icon}</span>
-                  <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-slate-100 text-slate-700">
-                    {topic.cat}
-                  </span>
-                </div>
-                <div>
-                  <h3 className="text-sm font-bold text-slate-900 group-hover:text-blue-600 transition-colors">
-                    {topic.title}
-                  </h3>
-                  <p className="text-xs text-slate-600 mt-1 leading-relaxed line-clamp-2">
-                    {topic.desc}
-                  </p>
-                </div>
-              </div>
-            </Link>
-          ))}
-        </div>
-      </section>
+      {/* SECTION 6 — LIVE REAL-LIFE FRAUD CASES TRACKER (NATIONWIDE FEED) */}
+      <LiveFraudTracker />
 
       {/* SECTION 7 — REAL-LIFE SCENARIOS PREVIEW */}
       <section className="px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto space-y-6">
