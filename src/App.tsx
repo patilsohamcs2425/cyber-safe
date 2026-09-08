@@ -7,6 +7,7 @@ import { MobileNav } from './components/layout/MobileNav';
 import { Footer } from './components/layout/Footer';
 import { EmergencyCallButton } from './components/layout/EmergencyCallButton';
 import { ProtectedRoute } from './components/layout/ProtectedRoute';
+import { CyberBackground } from './components/layout/CyberBackground';
 import { GSAPProvider } from './animations/GSAPProvider';
 
 // Pages
@@ -44,9 +45,8 @@ export function App() {
           <GSAPProvider />
           <div className="flex flex-col min-h-screen bg-[#f8fafc] text-slate-900 relative selection:bg-blue-100 selection:text-blue-900 overflow-x-hidden">
             
-            {/* Subtle light ambient glow */}
-            <div className="fixed top-0 right-1/4 w-96 h-96 bg-blue-50/70 rounded-full blur-[120px] pointer-events-none -z-10" />
-            <div className="fixed bottom-1/3 left-1/4 w-96 h-96 bg-indigo-50/60 rounded-full blur-[120px] pointer-events-none -z-10" />
+            {/* Premium CyberSafe Background System (Grid, Nodes & GSAP Ambient Glow) */}
+            <CyberBackground />
 
             {/* Desktop Navbar */}
             <Navbar />
