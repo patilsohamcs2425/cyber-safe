@@ -104,26 +104,28 @@ export const GSAPGlobal: React.FC = () => {
           }
         );
 
-        // Stagger cards inside grids within the section
-        const cardGrids = section.querySelectorAll('.grid > div');
-        if (cardGrids.length > 1) {
-          gsap.fromTo(
-            cardGrids,
-            { opacity: 0, y: GSAP_CONFIG.distance.subtle },
-            {
-              opacity: 1,
-              y: 0,
-              duration: GSAP_CONFIG.duration.standard,
-              stagger: 0.06,
-              ease: GSAP_CONFIG.ease.smooth,
-              scrollTrigger: {
-                trigger: section,
-                start: 'top 85%',
-                once: true
-              },
-              clearProps: 'transform,opacity'
-            }
-          );
+        // Stagger cards inside grids within the section (Desktop only to prevent mobile scroll lag)
+        if (isDesktop) {
+          const cardGrids = section.querySelectorAll('.grid > div');
+          if (cardGrids.length > 1) {
+            gsap.fromTo(
+              cardGrids,
+              { opacity: 0, y: GSAP_CONFIG.distance.subtle },
+              {
+                opacity: 1,
+                y: 0,
+                duration: GSAP_CONFIG.duration.standard,
+                stagger: 0.05,
+                ease: GSAP_CONFIG.ease.smooth,
+                scrollTrigger: {
+                  trigger: section,
+                  start: 'top 85%',
+                  once: true
+                },
+                clearProps: 'transform,opacity'
+              }
+            );
+          }
         }
       });
 
