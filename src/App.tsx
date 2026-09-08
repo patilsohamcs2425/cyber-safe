@@ -5,6 +5,7 @@ import { ProgressProvider } from './context/ProgressContext';
 import { Navbar } from './components/layout/Navbar';
 import { MobileNav } from './components/layout/MobileNav';
 import { Footer } from './components/layout/Footer';
+import { EmergencyCallButton } from './components/layout/EmergencyCallButton';
 import { ProtectedRoute } from './components/layout/ProtectedRoute';
 
 // Pages
@@ -87,6 +88,9 @@ export function App() {
 
             {/* Mobile Bottom Navigation Bar */}
             <MobileNav />
+
+            {/* Floating Emergency Call Button (Circle in Red) */}
+            <EmergencyCallButton />
 
           </div>
         </ProgressProvider>
