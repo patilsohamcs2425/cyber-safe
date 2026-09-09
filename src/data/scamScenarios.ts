@@ -48,28 +48,17 @@ export const SCAM_SCENARIOS: ScamScenario[] = [
   },
   {
     id: 'scam-2',
-    appType: 'instagram',
-    senderName: 'Instagram Copyright Helpcenter',
-    senderHandleOrNumber: '@ig_copyright_support_help_desk_2026',
-    timestamp: '2:15 PM',
-    messageText: 'Hello User,\n\nWe have detected a copyright infringement on one of your recent posts. If you think this is a mistake, you must submit an objection feedback within 24 hours. Otherwise, your account will be permanently deactivated.\n\nForm link below:',
-    attachment: {
-      type: 'link',
-      title: 'instagram-appeal-center-review.com/form',
-      description: 'Verify Copyright Ownership and Account Credentials',
-      url: 'https://instagram-appeal-center-review.com/login'
-    },
-    isScam: true,
-    difficulty: 'Medium',
-    category: 'Copyright',
-    redFlags: [
-      'Sent via Instagram Direct Message (Meta NEVER sends DM warnings to users)',
-      'Suspicious unverified handle with multiple underscores and random words',
-      'Phishing URL ("instagram-appeal-center-review.com" instead of "instagram.com")',
-      'Artificial 24-hour panic deadline to induce quick, thoughtless action'
-    ],
-    explanation: 'Instagram notifies users of copyright issues solely via the official in-app Notification Center (under Settings → Help → Support Requests), never through informal chat DMs.',
-    studentAdvice: 'Do not click the link. If you enter your username and password, attackers will instantly hijack your Instagram profile and lock you out.'
+    appType: 'sms',
+    senderName: 'Swiggy Express',
+    senderHandleOrNumber: 'VM-SWIGGY',
+    timestamp: '8:15 PM',
+    messageText: 'Your order #SW-98214 from Burger King is out for delivery with delivery partner Rahul (Ph: 9876543210). Your Delivery PIN is 4819. Share this PIN with Rahul ONLY when your food parcel is delivered.',
+    isScam: false,
+    difficulty: 'Easy',
+    category: 'Delivery',
+    redFlags: [],
+    explanation: 'This is a genuine food delivery tracking alert. It arrives from an authorized registered SMS header (VM-SWIGGY), references your specific order ID, and correctly instructs you to hold your PIN until face-to-face handoff.',
+    studentAdvice: 'Legitimate transactional delivery alerts never ask you to click links or pay unexpected advance fees.'
   },
   {
     id: 'scam-3',
@@ -98,27 +87,22 @@ export const SCAM_SCENARIOS: ScamScenario[] = [
   {
     id: 'scam-4',
     appType: 'sms',
-    senderName: 'GOV-SCHOLAR',
-    senderHandleOrNumber: 'VK-SCHOLAR',
-    timestamp: '9:30 AM',
-    messageText: 'PM Youth Digital Scheme 2026: All 11th & 12th standard students are eligible for a FREE laptop and ₹10,000 monthly stipend. Complete verification with your Aadhaar and bank details before registration closes at 5 PM today at https://pmyouth-free-laptop.in/apply',
+    senderName: 'CBSE Examination Cell',
+    senderHandleOrNumber: 'VK-CBSEEX',
+    timestamp: '11:00 AM',
+    messageText: 'CBSE Notification: Admit Cards for Class 10 & 12 Board Examinations 2026 are now available for verification on the official portal cbse.gov.in. Please check your subject codes and contact your school administration for authenticated printed copies.',
     attachment: {
       type: 'link',
-      title: 'pmyouth-free-laptop.in/apply',
-      description: 'National Student Free Laptop & Stipend Distribution 2026',
-      url: 'https://pmyouth-free-laptop.in/apply'
+      title: 'cbse.gov.in/cbsenew/admitcard.html',
+      description: 'Official Central Board of Secondary Education Portal',
+      url: 'https://cbse.gov.in'
     },
-    isScam: true,
+    isScam: false,
     difficulty: 'Medium',
     category: 'Scholarship',
-    redFlags: [
-      'Non-government domain (".in" rather than the mandated ".gov.in" or ".nic.in")',
-      'Artificial countdown urgency ("registration closes at 5 PM today")',
-      'Sensational promises of "FREE laptop" meant to entice students',
-      'Direct SMS link without any official press release on PIB or school circular'
-    ],
-    explanation: 'Government schemes in India are officially announced on portals ending in .gov.in or .nic.in and verified via PIB Fact Check. Fake domains steal Aadhaar, family details, and OTPs.',
-    studentAdvice: 'Cross-check any scholarship announcement on scholarships.gov.in (National Scholarship Portal) or ask your school computer teacher.'
+    redFlags: [],
+    explanation: 'This is a legitimate educational notice. The link points directly to the authentic ".gov.in" Indian government domain, and students are directed to their school administration without any fee or credential collection.',
+    studentAdvice: 'Always confirm that government links end in ".gov.in" or ".nic.in". When verified, they are safe official announcements.'
   },
   {
     id: 'scam-5',
@@ -200,28 +184,17 @@ export const SCAM_SCENARIOS: ScamScenario[] = [
   },
   {
     id: 'scam-9',
-    appType: 'instagram',
-    senderName: 'IIT Bombay TechFest Promo',
-    senderHandleOrNumber: '@techfest_free_vip_passes',
-    timestamp: '6:10 PM',
-    messageText: '🎉 Hey Tech Enthusiast! You\'ve been randomly selected to receive a FREE VIP Delegate Pass (worth ₹3,500) for TechFest 2026! 🚀 Click below to claim and enter your Instagram password to connect your pass.',
-    attachment: {
-      type: 'link',
-      title: 'techfest-student-pass-2026.club',
-      description: 'Login with Instagram to Claim VIP All-Access Pass',
-      url: 'http://techfest-student-pass-2026.club/claim'
-    },
-    isScam: true,
-    difficulty: 'Medium',
-    category: 'Scholarship',
-    redFlags: [
-      'Unverified fan page impersonating a prestigious college technical fest',
-      'Asks for your "Instagram password" to claim a ticket (credentials harvesting)',
-      'Free VIP pass worth ₹3,500 given to random stranger for zero reason',
-      'Non-official URL (.club extension instead of official .org or iitb domain)'
-    ],
-    explanation: 'College festival impersonation traps are widely used to phish student Instagram credentials. Once stolen, the hacked account is used to DM friends asking for emergency UPI money.',
-    studentAdvice: 'Never enter your social media password on third-party event portals. Legitimate events use registered ticketing partners like BookMyShow or their official .org websites.'
+    appType: 'sms',
+    senderName: 'School Library Desk',
+    senderHandleOrNumber: 'AD-SCHLIB',
+    timestamp: '3:30 PM',
+    messageText: 'Library Alert: "Concepts of Physics Vol 1" borrowed under Student ID #2026-CS-89 is due for return tomorrow by 4:00 PM. Please return or renew at the counter. No online fee or link is required.',
+    isScam: false,
+    difficulty: 'Easy',
+    category: 'Security',
+    redFlags: [],
+    explanation: 'This is a legitimate institutional alert. It references a specific book and student ID, comes from a recognized school SMS header, and explicitly clarifies that no online payments or links are involved.',
+    studentAdvice: 'Safe institutional alerts keep you informed without asking for payments, passwords, or personal credentials.'
   },
   {
     id: 'scam-10',

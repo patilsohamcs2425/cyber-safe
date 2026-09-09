@@ -26,16 +26,16 @@ export const SCENARIO_DILEMMAS: ScenarioDilemma[] = [
         explanation: 'Scammers deliberately use medical emergencies and nighttime hours to cause emotional panic so you don\'t stop to think.'
       },
       {
-        text: 'Call your friend directly on their normal cellular phone number or WhatsApp audio call.',
-        isBest: true,
-        consequence: '✅ You called your friend. They picked up from their bedroom, completely fine and unaware of the fake DM.',
-        explanation: 'A 20-second voice call will instantly expose 100% of cloned account impersonation scams.'
-      },
-      {
         text: 'Ask the DM account to send their password to prove it is really them.',
         isBest: false,
         consequence: '⚠️ Unproductive. The scammer will make an excuse and keep pressuring you with emotional manipulation.',
         explanation: 'Do not negotiate or chat with suspected impersonators.'
+      },
+      {
+        text: 'Call your friend directly on their normal cellular phone number or WhatsApp audio call.',
+        isBest: true,
+        consequence: '✅ You called your friend. They picked up from their bedroom, completely fine and unaware of the fake DM.',
+        explanation: 'A 20-second voice call will instantly expose 100% of cloned account impersonation scams.'
       },
       {
         text: 'Forward the message to your school WhatsApp group to ask classmates to pool money.',
@@ -53,16 +53,16 @@ export const SCENARIO_DILEMMAS: ScenarioDilemma[] = [
     situation: 'A user in a popular student gaming Discord server posts: "Hey guys, leaked beta exploit! Get unlimited weapon skins and 2000 UC/VP for free. Download this config patch: skin_unlocker_v2.exe (password: 123)". Several random bot accounts reply saying: "Works 100% thanks!"',
     options: [
       {
-        text: 'Download and run the file, but disable your antivirus temporarily as instructed in the readme.',
-        isBest: false,
-        consequence: '❌ Your PC was infected with an InfoStealer Trojan (RedLine/Vidar). All browser passwords, Discord tokens, and saved cookies were exfiltrated.',
-        explanation: 'Telling users to disable antivirus is the #1 signature of malware distribution.'
-      },
-      {
         text: 'Ignore the file and report the message to server moderators.',
         isBest: true,
         consequence: '✅ Your machine stayed clean, and server mods banned the bot account before younger members could get infected.',
         explanation: 'Game skins are stored on central game servers; local .exe files can never grant free server-side items without being malware.'
+      },
+      {
+        text: 'Download and run the file, but disable your antivirus temporarily as instructed in the readme.',
+        isBest: false,
+        consequence: '❌ Your PC was infected with an InfoStealer Trojan (RedLine/Vidar). All browser passwords, Discord tokens, and saved cookies were exfiltrated.',
+        explanation: 'Telling users to disable antivirus is the #1 signature of malware distribution.'
       },
       {
         text: 'Upload the .exe to VirusTotal to inspect it, but click it anyway if only 2 engines flag it.',
@@ -92,12 +92,6 @@ export const SCENARIO_DILEMMAS: ScenarioDilemma[] = [
         explanation: 'Cyber-flashing is an invasive harassment technique practiced by trolls in crowded public transit.'
       },
       {
-        text: 'Decline the transfer and switch your AirDrop / Quick Share settings to "Contacts Only" or "Receiving Off".',
-        isBest: true,
-        consequence: '✅ Your phone is shielded from unsolicited transfers and nearby device tracking.',
-        explanation: 'Keeping wireless sharing restricted to contacts prevents harassment and tracking in public.'
-      },
-      {
         text: 'Accept it, and AirDrop back an angry photo to retaliate.',
         isBest: false,
         consequence: '⚠️ Escalates the situation and reveals your device name and presence to an unknown stranger.',
@@ -108,6 +102,12 @@ export const SCENARIO_DILEMMAS: ScenarioDilemma[] = [
         isBest: false,
         consequence: '⚠️ Unnecessary extreme overreaction.',
         explanation: 'Simply setting AirDrop to Contacts Only is 100% effective.'
+      },
+      {
+        text: 'Decline the transfer and switch your AirDrop / Quick Share settings to "Contacts Only" or "Receiving Off".',
+        isBest: true,
+        consequence: '✅ Your phone is shielded from unsolicited transfers and nearby device tracking.',
+        explanation: 'Keeping wireless sharing restricted to contacts prevents harassment and tracking in public.'
       }
     ],
     keyTakeaway: 'Always keep public wireless discovery (AirDrop, QuickShare, Bluetooth) set to Contacts Only.'
@@ -158,16 +158,16 @@ export const SCENARIO_DILEMMAS: ScenarioDilemma[] = [
         explanation: 'Leaked paper scams prey on student exam anxiety every year. All such channels are fraudulent syndicates.'
       },
       {
-        text: 'Ignore the channel, do not pay, focus on your textbook revision, and warn your classmate.',
-        isBest: true,
-        consequence: '✅ You saved money, studied real concepts, and aced your exam through legitimate hard work.',
-        explanation: 'Board examination logistics are heavily encrypted and guarded; online Telegram groups sell recycled old papers.'
-      },
-      {
         text: 'Share the Telegram link with all your school section groups.',
         isBest: false,
         consequence: '❌ You assisted scammers in defrauding stressed classmates and could face disciplinary action for spreading rumors.',
         explanation: 'Promoting exam leak scams can lead to severe school and board penalties.'
+      },
+      {
+        text: 'Ignore the channel, do not pay, focus on your textbook revision, and warn your classmate.',
+        isBest: true,
+        consequence: '✅ You saved money, studied real concepts, and aced your exam through legitimate hard work.',
+        explanation: 'Board examination logistics are heavily encrypted and guarded; online Telegram groups sell recycled old papers.'
       },
       {
         text: 'Ask the admin to send half the questions first as a free demo.',
@@ -185,16 +185,16 @@ export const SCENARIO_DILEMMAS: ScenarioDilemma[] = [
     situation: 'You receive a WhatsApp message from a recruiter offering a part-time job: "Review 3 restaurants on Google Maps for ₹150". You try it and they actually send ₹150 to your UPI! Then they invite you to a VIP group: "Deposit ₹2,000 into our investment pool to unlock today\'s ₹5,000 task payout."',
     options: [
       {
-        text: 'Deposit the ₹2,000 because they already proved their honesty by paying you the ₹150.',
-        isBest: false,
-        consequence: '❌ Once you deposited ₹2,000, they demanded ₹10,000 to "release your funds", then locked your account and stole everything.',
-        explanation: 'The initial ₹150 is "bait money" (pre-planned loss) to hook you into depositing larger amounts.'
-      },
-      {
         text: 'Recognize this as the classic "Bait and Switch" Task Scam, stop interacting immediately, and block the group.',
         isBest: true,
         consequence: '✅ You walked away safe without losing thousands of rupees like thousands of other student victims.',
         explanation: 'Recognizing the task scam model early saves students from devastating financial loss.'
+      },
+      {
+        text: 'Deposit the ₹2,000 because they already proved their honesty by paying you the ₹150.',
+        isBest: false,
+        consequence: '❌ Once you deposited ₹2,000, they demanded ₹10,000 to "release your funds", then locked your account and stole everything.',
+        explanation: 'The initial ₹150 is "bait money" (pre-planned loss) to hook you into depositing larger amounts.'
       },
       {
         text: 'Deposit ₹1,000 and ask for a 50% discount on the task.',
@@ -224,12 +224,6 @@ export const SCENARIO_DILEMMAS: ScenarioDilemma[] = [
         explanation: 'Closing tabs does not end your active web sessions or erase cookies and history.'
       },
       {
-        text: 'Log out of every account, clear browser cache & cookies (or use Incognito mode from the start), and delete downloaded files from the Downloads folder.',
-        isBest: true,
-        consequence: '✅ The machine is left completely clean with no traces of your personal identity or passwords.',
-        explanation: 'Proper session hygiene prevents session hijacking and unauthorized data access on shared terminals.'
-      },
-      {
         text: 'Turn off the computer monitor and walk away.',
         isBest: false,
         consequence: '❌ The computer is still running and accounts remain logged in.',
@@ -240,6 +234,12 @@ export const SCENARIO_DILEMMAS: ScenarioDilemma[] = [
         isBest: false,
         consequence: '❌ Never share your master password with store operators or third parties.',
         explanation: 'Passwords are confidential personal keys.'
+      },
+      {
+        text: 'Log out of every account, clear browser cache & cookies (or use Incognito mode from the start), and delete downloaded files from the Downloads folder.',
+        isBest: true,
+        consequence: '✅ The machine is left completely clean with no traces of your personal identity or passwords.',
+        explanation: 'Proper session hygiene prevents session hijacking and unauthorized data access on shared terminals.'
       }
     ],
     keyTakeaway: 'Always use Incognito mode on public computers, log out explicitly, and delete downloaded files.'

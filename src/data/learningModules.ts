@@ -63,11 +63,11 @@ export const LEARNING_MODULES: LearningModule[] = [
       question: 'You receive a text: "ALERT: Your Instagram account has copyright violations! Verify here within 24 hours or your account will be permanently deleted: bit.ly/ig-verify-99". What is the safest response?',
       options: [
         'Click the link quickly to see which photo caused the copyright issue',
-        'Ignore the link and check "Account Status" directly inside the official Instagram App settings',
         'Reply to the text asking for proof of the copyright infringement',
+        'Ignore the link and check "Account Status" directly inside the official Instagram App settings',
         'Forward the link to your class group to ask if anyone else got it'
       ],
-      correctIndex: 1,
+      correctIndex: 2,
       explanation: 'Instagram never sends copyright warnings via SMS or random bit.ly links. Official notices appear directly inside the app under Settings → Help → Support Requests.'
     }
   },
@@ -107,12 +107,12 @@ export const LEARNING_MODULES: LearningModule[] = [
     miniChallenge: {
       question: 'Someone calls claiming your bank KYC is expired and asks you to install "QuickSupport" from Play Store so they can guide you. What should you do?',
       options: [
-        'Install it because it is an official app on the Google Play Store',
         'Refuse immediately, hang up, and block the caller — QuickSupport allows them to view your screen and steal OTPs',
+        'Install it because it is an official app on the Google Play Store',
         'Install it, but turn off Wi-Fi after installation',
         'Give them your mother\'s phone number instead'
       ],
-      correctIndex: 1,
+      correctIndex: 0,
       explanation: 'QuickSupport and AnyDesk are legitimate remote control tools used by scammers to see your screen live. Banks never ask customers to install screen-sharing software.'
     }
   },
@@ -154,10 +154,10 @@ export const LEARNING_MODULES: LearningModule[] = [
       options: [
         'Rohan12345',
         'P@ssw0rd!',
-        'Blue-Falcon-Orbit#98',
-        'qwertyUIOP@2024'
+        'qwertyUIOP@2024',
+        'Blue-Falcon-Orbit#98'
       ],
-      correctIndex: 2,
+      correctIndex: 3,
       explanation: 'Length is the most powerful factor against brute-force attacks. "Blue-Falcon-Orbit#98" has 20 characters with high entropy, taking centuries to crack, while common variations like "P@ssw0rd!" exist in dictionary attack wordlists.'
     }
   },
@@ -243,11 +243,11 @@ export const LEARNING_MODULES: LearningModule[] = [
       question: 'A cashier at a clothing store insists they cannot print your bill unless you tell them your 10-digit mobile number. What is the correct awareness response?',
       options: [
         'Give them your phone number and OTP',
-        'Politely state that under consumer guidelines, sharing a mobile number is optional for generating a retail cash receipt',
         'Shout at the cashier and leave your clothes behind',
-        'Give your friend\'s number instead'
+        'Give your friend\'s number instead',
+        'Politely state that under consumer guidelines, sharing a mobile number is optional for generating a retail cash receipt'
       ],
-      correctIndex: 1,
+      correctIndex: 3,
       explanation: 'Retailers cannot compel customers to provide phone numbers for cash billing. Giving numbers leads to spam databases and promotional tracking.'
     }
   },
@@ -287,12 +287,12 @@ export const LEARNING_MODULES: LearningModule[] = [
     miniChallenge: {
       question: 'Your classmate\'s account sends you an urgent DM: "Bro my Paytm is stuck, please transfer ₹1,000 to this UPI ID, I will repay you tomorrow at school". What should you do first?',
       options: [
+        'Call your classmate on their regular mobile phone number to confirm if they actually sent that message',
         'Send the ₹1,000 right away because they are your classmate',
         'Ask them to send their password first',
-        'Call your classmate on their regular mobile phone number to confirm if they actually sent that message',
         'Send ₹500 just to be safe'
       ],
-      correctIndex: 2,
+      correctIndex: 0,
       explanation: 'Account takeover and cloned accounts are common. A quick voice call on their established number takes 30 seconds and protects you from imposter fraud.'
     }
   },
@@ -333,11 +333,11 @@ export const LEARNING_MODULES: LearningModule[] = [
       question: 'If someone in a class group chat starts circulating an altered embarrassing photo of a classmate, what is the best ethical action?',
       options: [
         'Forward it to your tuition friends because you didn\'t make it',
-        'Do not forward or react; support your classmate privately, ask the sender to delete it, and notify a teacher or school counselor if harassment continues',
         'Reply with laughing emojis so people don\'t make fun of you',
+        'Do not forward or react; support your classmate privately, ask the sender to delete it, and notify a teacher or school counselor if harassment continues',
         'Leave the group silently and pretend you never saw it'
       ],
-      correctIndex: 1,
+      correctIndex: 2,
       explanation: 'Forwarding defamatory or altered photos contributes to cyber harassment. Refusing to amplify and speaking up or informing counselors stops the abuse cycle.'
     }
   },
@@ -378,11 +378,11 @@ export const LEARNING_MODULES: LearningModule[] = [
       question: 'You see a message on Telegram: "Work From Home student opportunity! Earn ₹2,500/day by reviewing hotel ratings on Google Maps. Pay ₹500 refundable security deposit to unlock task link." What is this?',
       options: [
         'A great way to earn pocket money during school holidays',
-        'A classic task scam designed to steal your ₹500 and push you into larger deposits',
         'A verified Google partnership program',
-        'A school-approved extracurricular project'
+        'A school-approved extracurricular project',
+        'A classic task scam designed to steal your ₹500 and push you into larger deposits'
       ],
-      correctIndex: 1,
+      correctIndex: 3,
       explanation: 'Task scams trick victims with small deposits. Legitimate corporations never conduct recruitment over anonymous Telegram channels with upfront fees.'
     }
   },
